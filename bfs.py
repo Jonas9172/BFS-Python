@@ -4,10 +4,7 @@ i, j = 0, 0  # 搜索的起始位置
 
 def bfs(i, j):
 
-    if i, j 满足某种条件:    # 有明确终点时使用，可有可无
-        return
-
-    queue = [[i, j]]  #本轮搜索的所有父端点的序列，一开始是(i,j)
+    queue = [[i, j]]  # 起点入队
 
     while len(queue) > 0:  #探索所有父端点序列
         x, y = queue.pop(0)

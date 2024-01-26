@@ -19,3 +19,40 @@ def bfs(i, j):
                 queue.append([new_X, new_Y])  # 将合适的子端点放入搜索序列
 
 bfs(i, j)
+
+
+
+迷宫问题答案：
+n, m = list(map(int, input().split()))
+maze = []
+for i in range(n):
+    maze.append(input().split())
+
+path = {}
+d = ((1,0),(-1,0),(0,1),(0,-1))
+p = []
+
+def bfs():
+    maze[0][0] = '1'
+    queue = [(0,0)]
+    path[(0,0)] = None
+    while len(queue) > 0:
+        if queue[0] == (n-1,m-1):
+            i = queue[0]
+            p.append(i)
+            while path[i]:
+                p.append(path[i])
+                i = path[i]
+            while p:
+                a = p.pop()
+                print('({},{})'.format(a[0],a[1]))
+            return
+        x,y = queue.pop(0)
+        for x_d, y_d in d:
+            new_x = x + x_d
+            new_y = y + y_d
+            if 0 <= new_x < n and 0 <= new_y < m and maze[new_x][new_y] == '0':
+                queue.append((new_x,new_y))
+                maze[new_x][new_y] = '1'
+                path[(new_x,new_y)] = (x,y)
+bfs()
